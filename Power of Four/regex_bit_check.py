@@ -2,23 +2,15 @@ import re
 from types import NoneType
 
 
-# region Solutions
-def str_bit_check(n: int) -> bool:
-    bits_n = bin(n)[2:]
-    if (
-        # first bit is 1
-        bits_n[0] == "1"
-        # every other bit is 0
-        and all(bit == "0" for bit in bits_n[1:])
-        # odd number of bits
-        and (len(bits_n) % 2) == 1
-    ):
-        return True
-    else:
-        return False
-
-
 def regex_bit_check(n: int) -> bool:
+    """Validate if int is power of four via regex search of string representation of bits
+
+    Args:
+        n (int): input integer
+
+    Returns:
+        bool: True if n is power of four, else False
+    """
     import re
     from types import NoneType
 
@@ -33,10 +25,6 @@ def regex_bit_check(n: int) -> bool:
         return False
 
 
-# endregion
-
-
-# region Tests
 def regex_tests() -> list[bool]:
     """Regex should only pass strings of the form 1000... for all n
 
@@ -69,14 +57,10 @@ def regex_tests() -> list[bool]:
     return test_results
 
 
-# endregion
-
-# region Main
+# Call regex tests
 if __name__ == "__main__":
     regex_test_results = regex_tests()
     for result in regex_test_results:
         for k, v in result.items():
             print(k + ": " + v)
         print("")
-
-# endregion
